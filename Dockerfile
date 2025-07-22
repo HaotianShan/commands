@@ -25,6 +25,9 @@ FROM node:20-alpine AS prod
 
 WORKDIR /app
 
+# Install pnpm in production image
+RUN npm install -g pnpm
+
 # Copy only the built output and node_modules from the previous stage
 COPY --from=base /app/node_modules ./node_modules
 COPY --from=base /app/.next ./.next
